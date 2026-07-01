@@ -1,0 +1,5 @@
+interface:
+  display_name: "Summary-Papers"
+  short_description: "递归读取目录中的 PDF 论文，生成结构化总结，并导出 Markdown、Excel 或两者。"
+  default_prompt: "Use $Summary-Papers to recursively summarize all PDF papers in a folder and export Markdown, Excel, or both."
+
