@@ -91,11 +91,11 @@ PYTHONPATH=/tmp/summary_papers_deps python3 scripts/paper_summary_cli.py ...
 
 `Summary-Papers` 的脚本入口本质上处理的是一个本地 PDF 文件夹。实际使用时，论文可以通过以下方式交给 Codex/CC：
 
-1. 已安装 `zotero-mcp`(https://github.com/54yyyu/zotero-mcp)：可以让 Codex/CC 直接读取 Zotero 中的 collection 或当前选中的论文，取得 PDF 附件后再使用本 skill 总结
-2. 未安装 `zotero-mcp`：可以先在 Zotero 中导出论文 PDF 到一个本地文件夹，再把该文件夹路径交给 Codex/CC
+1. 已安装 [`zotero-mcp`](https://github.com/54yyyu/zotero-mcp)：可以让 Codex/CC 直接读取 Zotero 中的 collection 或当前选中的论文，取得 PDF 附件后再使用本 skill 总结
+2. 未安装 [`zotero-mcp`](https://github.com/54yyyu/zotero-mcp)：可以先在 Zotero 中导出论文 PDF 到一个本地文件夹，再把该文件夹路径交给 Codex/CC
 3. 不使用 Zotero：直接提供一个包含 PDF 的本地文件夹路径
 
-使用 `zotero-mcp` 的 prompt 示例：
+使用 [`zotero-mcp`](https://github.com/54yyyu/zotero-mcp) 的 prompt 示例：
 
 ```text
 使用 zotero-mcp 读取 Zotero 中 rPPG/llm_rppg 分类里的论文，然后使用 Summary-Papers 总结。
@@ -191,5 +191,5 @@ output_root/
 
 - 不自动 OCR 扫描版 PDF
 - 不默认联网补全元数据
-- 脚本本身不直接连接 Zotero；如需从 Zotero 选论文，建议通过 Codex 的 `zotero-mcp` 先取得 PDF 附件或导出文件夹
+- 脚本本身不直接连接 Zotero；如需从 Zotero 选论文，建议通过 Codex/CC 的 [`zotero-mcp`](https://github.com/54yyyu/zotero-mcp) 先取得 PDF 附件或导出文件夹
 - 结构化总结仍由 Codex/LLM 根据提取文本生成
