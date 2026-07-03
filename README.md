@@ -1,11 +1,8 @@
 # Summary-Papers
 
-`Summary-Papers` 是一个合并后的论文批量总结 skill：输入一个本地论文目录，递归处理目录及子目录下所有 PDF，先生成完整结构化 JSON，再导出一个 Markdown 文件、一个单 sheet Excel，或两者同时输出。
+`Summary-Papers` 是一个论文批量总结 skill：输入一个论文文件夹路径/zotero分类，递归处理目录及子目录下/zotero分类下的所有 PDF，先生成完整结构化 JSON，再导出一个 Markdown 文件、一个单 sheet Excel，或两者同时输出。
 
-它合并了原先两个方向：
-
-- Obsidian/Markdown：保留论文标题作者截图、method/framework 图和完整论文笔记。
-- Paper2Excel：保留单表 Excel、固定字段和溯源列。
+demos中提供了一个输出样例。
 
 ## 功能
 
@@ -90,6 +87,32 @@ PYTHONPATH=/tmp/summary_papers_deps python3 scripts/paper_summary_cli.py ...
 
 ## 使用流程
 
+### 输入论文的三种方式
+
+`Summary-Papers` 的脚本入口本质上处理的是一个本地 PDF 文件夹。实际使用时，论文可以通过以下方式交给 Codex/CC：
+
+1. 已安装 `zotero-mcp`(https://github.com/54yyyu/zotero-mcp)：可以让 Codex/CC 直接读取 Zotero 中的 collection 或当前选中的论文，取得 PDF 附件后再使用本 skill 总结
+2. 未安装 `zotero-mcp`：可以先在 Zotero 中导出论文 PDF 到一个本地文件夹，再把该文件夹路径交给 Codex/CC
+3. 不使用 Zotero：直接提供一个包含 PDF 的本地文件夹路径
+
+使用 `zotero-mcp` 的 prompt 示例：
+
+```text
+使用 zotero-mcp 读取 Zotero 中 rPPG/llm_rppg 分类里的论文，然后使用 Summary-Papers 总结。
+
+输出到：
+/Users/zhao/Desktop/llm_rppg_summary/output
+
+输出格式：
+all
+```
+
+也可以处理 Zotero 当前选中的论文：
+
+```text
+使用 zotero-mcp 读取 Zotero 当前选中的论文 PDF，然后使用 Summary-Papers 总结，输出 Markdown 和 Excel。
+```
+
 ### 1. 准备运行
 
 ```bash
@@ -168,5 +191,5 @@ output_root/
 
 - 不自动 OCR 扫描版 PDF
 - 不默认联网补全元数据
-- 不直接连接 Zotero
+- 脚本本身不直接连接 Zotero；如需从 Zotero 选论文，建议通过 Codex 的 `zotero-mcp` 先取得 PDF 附件或导出文件夹
 - 结构化总结仍由 Codex/LLM 根据提取文本生成
